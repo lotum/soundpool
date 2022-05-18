@@ -2,10 +2,11 @@
 library soundpool_web;
 
 import 'dart:async';
+import 'dart:core';
+import 'dart:typed_data';
 // ignore: uri_does_not_exist
 import 'dart:web_audio' as audio;
-import 'dart:typed_data';
-import 'dart:core';
+
 import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 import 'package:http/http.dart' as http;
 import 'package:soundpool_platform_interface/soundpool_platform_interface.dart';
@@ -74,8 +75,7 @@ class SoundpoolPlugin extends SoundpoolPlatform {
   }
 
   @override
-  Future<void> setVolume(
-      int poolId, int? soundId, int? streamId, double? volumeLeft, double? volumeRight) async {
+  Future<void> setVolume(int poolId, int? soundId, int? streamId, double? volumeLeft, double? volumeRight) async {
     _AudioContextWrapper wrapper = _pool[poolId]!;
     if (streamId == null) {
       await wrapper.setVolume(soundId!, volumeLeft, volumeRight);
@@ -95,17 +95,13 @@ class SoundpoolPlugin extends SoundpoolPlatform {
 }
 
 class _AudioContextWrapper {
-  late audio.AudioContext audioContext;
-  void _initContext() {
-      audioContext = audio.AudioContext();
-  }
+  late final audioContext = audio.AudioContext();
 
   Map<int, _CachedAudioSettings> _cache = {};
   Map<int, _PlayingAudioWrapper> _playedAudioCache = {};
   int _lastPlayedStreamId = 0;
 
   Future<int> load(ByteBuffer buffer) async {
-    _initContext();
     audio.AudioBuffer audioBuffer = await audioContext.decodeAudioData(buffer);
     int currentSize = _cache.length;
     _cache[currentSize + 1] = _CachedAudioSettings(buffer: audioBuffer);
