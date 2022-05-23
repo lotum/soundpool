@@ -4,6 +4,22 @@ import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 
 import 'method_channel_soundpool_platform.dart';
 
+abstract class _SoundpoolException implements Exception {
+  final String message;
+  _SoundpoolException(this.message);
+  @override
+  String toString() => '${runtimeType}: $message';
+}
+
+class InvalidPoolIdException extends _SoundpoolException {
+  InvalidPoolIdException({required int poolId}) : super('Pool $poolId does not exist');
+}
+
+class InvalidSoundIdException extends _SoundpoolException {
+  InvalidSoundIdException({required int soundId, required int poolId})
+      : super('Sound $soundId does not exist in pool $poolId');
+}
+
 /// The interface that implementations of soundpool must implement.
 ///
 /// This class creates [SoundpoolPlatformInterface] instances to do the actual communication with
@@ -61,8 +77,7 @@ abstract class SoundpoolPlatform extends PlatformInterface {
     throw UnimplementedError('resume() has not been implemented');
   }
 
-  Future<void> setVolume(int poolId, int? soundId, int? streamId,
-      double? volumeLeft, double? volumeRight) {
+  Future<void> setVolume(int poolId, int? soundId, int? streamId, double? volumeLeft, double? volumeRight) {
     throw UnimplementedError('setVolume() has not been implemented');
   }
 
