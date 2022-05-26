@@ -129,9 +129,11 @@ packages:
   soundpool_platform_interface:
     dependency: "direct main"
     description:
-      path: "../soundpool_platform_interface"
-      relative: true
-    source: path
+      path: soundpool_platform_interface
+      ref: master
+      resolved-ref: "9fd95cde1dd5782bf7c7cbadcb16eb007e684026"
+      url: "https://github.com/lotum/soundpool.git"
+    source: git
     version: "2.3.0+2"
   source_span:
     dependency: transitive

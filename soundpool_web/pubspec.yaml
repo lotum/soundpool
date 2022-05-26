@@ -15,8 +15,13 @@ dependencies:
     sdk: flutter
   
   # soundpool_platform_interface: 2.3.0+2
+  # soundpool_platform_interface:
+  #  path: ../soundpool_platform_interface
   soundpool_platform_interface:
-    path: ../soundpool_platform_interface
+    git:
+      url: https://github.com/lotum/soundpool.git
+      ref: master
+      path: soundpool_platform_interface
   
   http: ^0.13.0
 
