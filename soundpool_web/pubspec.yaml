@@ -16,7 +16,7 @@ dependencies:
   soundpool_platform_interface:
     git:
       url: https://github.com/lotum/soundpool.git
-      ref: fork-v0
+      ref: fork-v1
       path: soundpool_platform_interface
 
 dev_dependencies:
