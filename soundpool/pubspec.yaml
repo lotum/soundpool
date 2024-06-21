@@ -13,17 +13,17 @@ dependencies:
   soundpool_platform_interface:
     git:
       url: https://github.com/lotum/soundpool.git
-      ref: fork-v1
+      ref: fork-v2
       path: soundpool_platform_interface
   soundpool_macos:
     git:
       url: https://github.com/lotum/soundpool.git
-      ref: fork-v1
+      ref: fork-v2
       path: soundpool_macos
   soundpool_web:
     git:
       url: https://github.com/lotum/soundpool.git
-      ref: fork-v1
+      ref: fork-v2
       path: soundpool_web
 
 flutter:
