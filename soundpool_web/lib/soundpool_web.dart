@@ -3,6 +3,7 @@ library soundpool_web;
 
 import 'dart:async';
 import 'dart:core';
+import 'dart:math';
 import 'dart:typed_data';
 // ignore: uri_does_not_exist
 import 'dart:web_audio' as audio;
@@ -31,7 +32,7 @@ class SoundpoolPlugin extends SoundpoolPlatform {
   Future<int> init(int streamType, int maxStreams, Map<String, dynamic> options) async {
     _checkSupported();
     // stream type and streams limit are not supported
-    var poolId = _pool.length + 1;
+    var poolId = 1 + Random().nextInt(100000);
     _pool[poolId] = _AudioContextWrapper(poolId);
     return poolId;
   }
